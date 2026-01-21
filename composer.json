@@ -1,5 +1,5 @@
 {
-  "name": "jbelien/phpstan-sarif-formatter",
+  "name": "openclassrooms/phpstan-sarif-formatter",
   "description": "SARIF formatter for PHPStan",
   "license": "MIT",
   "require": {
@@ -9,7 +9,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PHPStanSarifErrorFormatter\\": "src/"
+      "OC\\PHPStanSarifErrorFormatter\\": "src/"
     }
   },
   "config": {

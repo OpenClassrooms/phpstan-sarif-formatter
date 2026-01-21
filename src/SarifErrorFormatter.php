@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPStanSarifErrorFormatter;
+namespace OC\PHPStanSarifErrorFormatter;
 
 use PHPStan\Command\ErrorFormatter\ErrorFormatter;
 use Nette\Utils\Json;
@@ -58,7 +58,7 @@ class SarifErrorFormatter implements ErrorFormatter
           [
             'physicalLocation' => [
               'artifactLocation' => [
-                'uri' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFile()),
+                'uri' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFilePath()),
                 'uriBaseId' => self::URI_BASE_ID,
               ],
               'region' => [
