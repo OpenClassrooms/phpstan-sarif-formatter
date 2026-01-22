@@ -49,16 +49,19 @@ class SarifErrorFormatter implements ErrorFormatter
     $results = [];
 
     foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
+      preg_match('/^(.+?)\s*(\((?:.+)\))?$/', $fileSpecificError->getFile(), $matches);
+      $file = $matches[1] ?? $fileSpecificError->getFile();
+      $context = $matches[2] ?? '';
       $result = [
         'level' => $fileSpecificError->canBeIgnored() ? 'warning' : 'error',
         'message' => [
-          'text' => $fileSpecificError->getMessage(),
+          'text' => trim($fileSpecificError->getMessage() . ' ' . $context),
         ],
         'locations' => [
           [
             'physicalLocation' => [
               'artifactLocation' => [
-                'uri' => $this->relativePathHelper->getRelativePath($fileSpecificError->getFilePath()),
+                'uri' => $this->relativePathHelper->getRelativePath($file),
                 'uriBaseId' => self::URI_BASE_ID,
               ],
               'region' => [
